@@ -1,10 +1,14 @@
 import {} from './components';
 import Calculator from './containers/Calculator';
-
-import './App.css';
+import { GlobalStyle } from './styles/globalStyles';
 
 const App = () => {
-  return <Calculator />;
+  return (
+    <>
+      <Calculator />
+      <GlobalStyle />
+    </>
+  );
 };
 
 export default App;

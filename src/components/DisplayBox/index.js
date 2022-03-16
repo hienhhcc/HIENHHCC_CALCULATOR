@@ -1,7 +1,7 @@
 import { StyledDisplayBox } from './styles';
 
 const DisplayBox = () => {
-  return <StyledDisplayBox></StyledDisplayBox>;
+  return <StyledDisplayBox>5*10</StyledDisplayBox>;
 };
 
 export default DisplayBox;
