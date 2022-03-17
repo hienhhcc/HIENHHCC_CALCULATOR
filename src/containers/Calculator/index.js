@@ -86,13 +86,29 @@ const inputReducer = (state, action) => {
       }
       return newState;
     case 'dot':
-      if (input.length === 1) {
-        input[0] = input[0] + '.';
-      } else if (input.length === 2) {
-        input[2] = '0.';
+      if (newState.result === '') {
+        if (input.length === 1) {
+          if (input[0][input[0].length - 1] === '.') {
+            return newState;
+          }
+          input[0] = input[0] + '.';
+        } else if (input.length === 2) {
+          input[2] = '0.';
+        } else {
+          if (input[2][input[2].length - 1] === '.') {
+            return newState;
+          }
+          input[2] = input[2] + '.';
+        }
       } else {
-        input[2] = input[2] + '.';
+        newState.result = '';
+        if (input.length === 1) {
+          input[0] = '0.';
+        } else {
+          input[2] = '0.';
+        }
       }
+
       return newState;
     default:
       return ['0'];
