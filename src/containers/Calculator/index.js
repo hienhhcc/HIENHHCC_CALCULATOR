@@ -4,8 +4,16 @@ import { DIVIDEBY0, MODULOBY0 } from '../../utils/constants';
 
 import { StyledCalculator } from './styles';
 
+const initialState = {
+  result: '',
+  input: ['0'],
+};
+
 const calculateHelper = (number1, operator, number2) => {
   let result;
+  if (number2[number2.length - 1] === '.') {
+    number2 = number2.slice(0, number2.length - 1);
+  }
   if (operator === '+') {
     result = +number1 + +number2;
   } else if (operator === '-') {
@@ -22,65 +30,82 @@ const calculateHelper = (number1, operator, number2) => {
   return result;
 };
 
-const inputReducer = (input, action) => {
-  let newInput = input.slice();
+const inputReducer = (state, action) => {
+  let newState = { ...state, input: [...state.input] };
+  let { input } = newState;
   switch (action.type) {
     case 'number':
-      if (newInput.length === 1) {
-        if (newInput[0] !== DIVIDEBY0 && newInput[0] !== MODULOBY0) {
-          newInput[0] = (+newInput[0].concat(action.payload)).toString();
+      if (input.length === 1) {
+        if (
+          input[0] !== DIVIDEBY0 &&
+          input[0] !== MODULOBY0 &&
+          newState.result === ''
+        ) {
+          input[0] = (+input[0].concat(action.payload)).toString();
         } else {
-          newInput[0] = action.payload;
+          input[0] = action.payload;
+          newState.result = '';
         }
-      } else if (newInput.length === 2) {
-        newInput[2] = action.payload;
+      } else if (input.length === 2) {
+        input[2] = action.payload;
       } else {
-        newInput[2] = (+newInput[2].concat(action.payload)).toString();
+        input[2] = (+input[2].concat(action.payload)).toString();
       }
-      return newInput;
+      return newState;
     case 'operator':
       //+ - * / %
-      if (newInput.length <= 2) {
-        newInput[1] = action.payload;
+      if (input.length <= 2) {
+        input[1] = action.payload;
       } else {
-        newInput[0] = calculateHelper(newInput[0], newInput[1], newInput[2]);
-        newInput[1] = action.payload;
-        newInput.pop(); // Pop index 2
+        input[0] = calculateHelper(input[0], input[1], input[2]).toString();
+        input[1] = action.payload;
+        input.pop(); // Pop index 2
+        newState.result = input[0];
       }
-      return newInput;
+      return newState;
     case 'equal':
       // =
-      if (newInput.length === 1) return newInput;
-      else if (newInput.length === 2) {
-        newInput[0] = calculateHelper(newInput[0], newInput[1], newInput[0]);
-        newInput.pop();
+      if (input.length === 1) return newState;
+      else if (input.length === 2) {
+        input[0] = calculateHelper(input[0], input[1], input[0]).toString();
+        input.pop();
       } else {
-        newInput[0] = calculateHelper(newInput[0], newInput[1], newInput[2]);
-        newInput.pop();
-        newInput.pop();
+        input[0] = calculateHelper(input[0], input[1], input[2]).toString();
+        input.pop();
+        input.pop();
       }
-      return newInput;
+      newState.result = input[0];
+      return newState;
     case 'clear':
-      return ['0'];
+      return initialState;
     case 'negate':
-      if (newInput.length <= 2) {
-        newInput[0] = -newInput[0];
+      if (input.length <= 2) {
+        input[0] = (-input[0]).toString();
       } else {
-        newInput[2] = -newInput[2];
+        input[2] = (-input[2]).toString();
       }
-      return newInput;
+      return newState;
+    case 'dot':
+      if (input.length === 1) {
+        input[0] = input[0] + '.';
+      } else if (input.length === 2) {
+        input[2] = '0.';
+      } else {
+        input[2] = input[2] + '.';
+      }
+      return newState;
     default:
       return ['0'];
   }
 };
 
 const Calculator = () => {
-  const [input, dispatch] = useReducer(inputReducer, ['0']); //[8,*,9]
+  const [state, dispatch] = useReducer(inputReducer, initialState); //[8,*,9]
 
   return (
     <StyledCalculator>
-      <DisplayBox input={input} />
-      <Instructions input={input} dispatch={dispatch} />
+      <DisplayBox input={state.input} />
+      <Instructions input={state.input} dispatch={dispatch} />
     </StyledCalculator>
   );
 };

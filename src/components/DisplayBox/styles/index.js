@@ -12,7 +12,7 @@ export const StyledDisplayBox = styled.div`
   color: #fff;
   font-weight: bold;
   letter-spacing: 0.1rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
 `;
 
 export const StyledSpan = styled.span`
