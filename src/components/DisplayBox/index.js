@@ -1,7 +1,13 @@
-import { StyledDisplayBox } from './styles';
+import { StyledDisplayBox, StyledSpan } from './styles';
 
-const DisplayBox = () => {
-  return <StyledDisplayBox>5*10</StyledDisplayBox>;
+const DisplayBox = ({ input }) => {
+  return (
+    <StyledDisplayBox>
+      {input.map((i) => (
+        <StyledSpan key={i + Math.random()}>{i}</StyledSpan>
+      ))}
+    </StyledDisplayBox>
+  );
 };
 
 export default DisplayBox;

@@ -14,3 +14,9 @@ export const StyledDisplayBox = styled.div`
   letter-spacing: 0.1rem;
   font-size: 2rem;
 `;
+
+export const StyledSpan = styled.span`
+  &:not(:last-child) {
+    margin-right: 0.2rem;
+  }
+`;

@@ -1,12 +1,14 @@
-import { StyledIntruction } from './styles';
+import NumberInstruction from './NumberInstruction';
+import OperatorInstruction from './OperatorInstruction';
 
-const Instruction = ({ name, onClick, isOperator }) => {
-  console.log(isOperator);
-  return (
-    <StyledIntruction onClick={onClick} isOperator={isOperator}>
-      {name}
-    </StyledIntruction>
-  );
+const Instruction = ({ name, numberButton, dispatch, input }) => {
+  //Number instructions
+  if (numberButton) {
+    return <NumberInstruction name={name} dispatch={dispatch} />;
+  }
+
+  //Operator instructions
+  return <OperatorInstruction name={name} dispatch={dispatch} input={input} />;
 };
 
 export default Instruction;
