@@ -15,14 +15,14 @@ const OperatorInstruction = ({ name, dispatch, input }) => {
   };
 
   let content = (
-    <StyledIntruction isOperator onClick={onClickOperator}>
+    <StyledIntruction onClick={onClickOperator}>
       {name}
     </StyledIntruction>
   );
 
   if ((input[0] === DIVIDEBY0 || input[0] === MODULOBY0) && name !== 'AC') {
     content = (
-      <StyledIntruction isOperator onClick={onClickOperator} disabled>
+      <StyledIntruction onClick={onClickOperator} disabled>
         {name}
       </StyledIntruction>
     );

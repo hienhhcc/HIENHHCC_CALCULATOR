@@ -8,7 +8,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html,body {
-    font-family: 'Montserrat',sans-serif;
+    font-family: 'Spartan',sans-serif;
     scroll-behavior: smooth;
+    background: hsl(0, 0%, 90%);
   }
 `;

@@ -5,34 +5,6 @@ import { StyledIntructions } from './styles';
 const Instructions = ({ input, dispatch }) => {
   const instructions = [
     {
-      name: 'AC',
-      // onClick: () => {
-      //   setInput([0]);
-      // },
-    },
-    {
-      name: '+/-',
-      // onClick: () => {
-      //   if (input.length === 1) {
-      //     setInput((previousInput) => [-previousInput[0]]);
-      //   } else if (input.length === 2) {
-      //     setInput((previousInput) => [-previousInput[0], previousInput[1]]);
-      //   } else {
-      //     setInput((previousInput) => [
-      //       previousInput[0],
-      //       previousInput[1],
-      //       -previousInput[2],
-      //     ]);
-      //   }
-      // },
-    },
-    {
-      name: '%',
-    },
-    {
-      name: '÷',
-    },
-    {
       name: '7',
       numberButton: true,
     },
@@ -45,7 +17,7 @@ const Instructions = ({ input, dispatch }) => {
       numberButton: true,
     },
     {
-      name: '\u00D7',
+      name: 'DEL',
     },
     {
       name: '4',
@@ -60,8 +32,10 @@ const Instructions = ({ input, dispatch }) => {
       numberButton: true,
     },
     {
-      name: '-',
+      name: '+',
+      numberButton: true,
     },
+
     {
       name: '1',
       numberButton: true,
@@ -70,20 +44,32 @@ const Instructions = ({ input, dispatch }) => {
       name: '2',
       numberButton: true,
     },
+
     {
       name: '3',
       numberButton: true,
     },
     {
-      name: '+',
+      name: '-',
+      numberButton: true,
+    },
+    {
+      name: '.',
+      numberButton: true,
     },
     {
       name: '0',
       numberButton: true,
     },
     {
-      name: '.',
+      name: '/',
       numberButton: true,
+    },
+    {
+      name: '\u00D7',
+    },
+    {
+      name: 'Reset',
     },
     {
       name: '=',

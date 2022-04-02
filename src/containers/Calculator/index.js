@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { DisplayBox, Instructions } from '../../components';
+import { CalHeader, DisplayBox, Instructions } from '../../components';
 import { DIVIDEBY0, MODULOBY0 } from '../../utils/constants';
 
 import { StyledCalculator } from './styles';
@@ -120,6 +120,7 @@ const Calculator = () => {
 
   return (
     <StyledCalculator>
+      <CalHeader />
       <DisplayBox input={state.input} />
       <Instructions input={state.input} dispatch={dispatch} />
     </StyledCalculator>
