@@ -10,6 +10,6 @@ export const GlobalStyle = createGlobalStyle`
   html,body {
     font-family: 'Spartan',sans-serif;
     scroll-behavior: smooth;
-    background: hsl(0, 0%, 90%);
+    background: ${(props) => props.customTheme.background};
   }
 `;

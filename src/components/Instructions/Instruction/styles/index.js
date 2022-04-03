@@ -2,14 +2,30 @@ import styled from 'styled-components';
 
 export const StyledIntruction = styled.button`
   font: inherit;
-  font-size: 1.4rem;
-  font-weight: bold;
+  font-size: ${(props) =>
+    props.operationType === 'normal' ? '1.8rem' : '1.4rem'};
+  font-weight: 900;
   cursor: pointer;
   background-color: ${(props) =>
-    props.isOperator ? 'orange' : 'hsl(45, 7%, 89%)'};
+    props.operationType === 'normal'
+      ? props.customTheme.key
+      : props.operationType === 'function'
+      ? props.customTheme.keyFunction
+      : props.customTheme.keyEqual};
+  box-shadow: 0 4px
+    ${(props) =>
+      props.operationType === 'normal'
+        ? props.customTheme.keyShadow
+        : props.operationType === 'function'
+        ? props.customTheme.keyFunctionShadow
+        : props.customTheme.keyEqualShadow};
+  color: ${(props) =>
+    props.operationType === 'normal'
+      ? props.customTheme.textPrimary
+      : props.customTheme.textSecondary};
   border: none;
   border-radius: 10px;
-  box-shadow: 0 4px hsl(35, 11%, 61%);
+
   min-width: 80px;
   min-height: 50px;
 

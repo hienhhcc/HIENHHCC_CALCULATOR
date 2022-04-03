@@ -1,86 +1,106 @@
+import { useContext } from 'react';
+import { ThemeContext } from '../../context/theme';
 import Instruction from './Instruction';
 
 import { StyledIntructions } from './styles';
 
 const Instructions = ({ input, dispatch }) => {
+  const { theme } = useContext(ThemeContext);
+
   const instructions = [
     {
       name: '7',
-      numberButton: true,
+      type: 'normal',
+      isNumberButton: true,
     },
     {
       name: '8',
-      numberButton: true,
+      type: 'normal',
+      isNumberButton: true,
     },
     {
       name: '9',
-      numberButton: true,
+      type: 'normal',
+      isNumberButton: true,
     },
     {
       name: 'DEL',
+      type: 'function',
     },
     {
       name: '4',
-      numberButton: true,
+      type: 'normal',
+      isNumberButton: true,
     },
     {
       name: '5',
-      numberButton: true,
+      type: 'normal',
+      isNumberButton: true,
     },
     {
       name: '6',
-      numberButton: true,
+      type: 'normal',
+      isNumberButton: true,
     },
     {
       name: '+',
-      numberButton: true,
+      type: 'normal',
     },
 
     {
       name: '1',
-      numberButton: true,
+      type: 'normal',
+      isNumberButton: true,
     },
     {
       name: '2',
-      numberButton: true,
+      type: 'normal',
+      isNumberButton: true,
     },
 
     {
       name: '3',
-      numberButton: true,
+      type: 'normal',
+      isNumberButton: true,
     },
     {
       name: '-',
-      numberButton: true,
+      type: 'normal',
     },
     {
       name: '.',
-      numberButton: true,
+      type: 'normal',
+      isNumberButton: true,
     },
     {
       name: '0',
-      numberButton: true,
+      type: 'normal',
+      isNumberButton: true,
     },
     {
       name: '/',
-      numberButton: true,
+      type: 'normal',
     },
     {
       name: '\u00D7',
+      type: 'normal',
     },
     {
       name: 'Reset',
+      type: 'function',
     },
     {
       name: '=',
+      type: 'equal',
     },
   ];
   return (
-    <StyledIntructions>
-      {instructions.map(({ name, numberButton }) => (
+    <StyledIntructions customTheme={theme}>
+      {instructions.map(({ name, type, isNumberButton }) => (
         <Instruction
           name={name}
-          numberButton={numberButton}
+          type={type}
+          isNumberButton={isNumberButton}
           input={input}
           dispatch={dispatch}
           key={name}

@@ -1,24 +1,25 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+
 import { ThemeSwitchStyled } from './styles/index';
 
-const ThemeSwitch = () => {
-  // const [isDarkTheme, setIsDarkTheme] = useState(true);
-  // const [isLightTheme, setIsLightTheme] = useState(false);
-  // const [isNeonTheme, setIsNeonTheme] = useState(false);
-  const [selectedTheme, setSelectedTheme] = useState('dark');
+import { ThemeContext } from '../../../context/theme';
+import { themes } from '../../../utils/constants';
 
-  const onClickDarkTheme = (event) => {
-    setSelectedTheme('dark');
+const ThemeSwitch = () => {
+  const { theme, setTheme } = useContext(ThemeContext);
+  // const [selectedTheme, setSelectedTheme] = useState('dark');
+  const onClickDarkTheme = () => {
+    setTheme(themes.dark);
   };
-  const onClickLightTheme = (event) => {
-    setSelectedTheme('light');
+  const onClickLightTheme = () => {
+    setTheme(themes.light);
   };
-  const onClickNeonTheme = (event) => {
-    setSelectedTheme('neon');
+  const onClickNeonTheme = () => {
+    setTheme(themes.neon);
   };
 
   return (
-    <ThemeSwitchStyled>
+    <ThemeSwitchStyled customTheme={theme}>
       <label htmlFor="dark-theme" aria-label="Toggle dark theme">
         1
       </label>
@@ -26,7 +27,7 @@ const ThemeSwitch = () => {
         type="radio"
         name="theme-switch"
         id="dark-theme"
-        checked={selectedTheme === 'dark'}
+        checked={theme === themes.dark}
         onChange={onClickDarkTheme}
       />
       <label htmlFor="light-theme" aria-label="Toggle light theme">
@@ -36,7 +37,7 @@ const ThemeSwitch = () => {
         type="radio"
         name="theme-switch"
         id="light-theme"
-        checked={selectedTheme === 'light'}
+        checked={theme === themes.light}
         onChange={onClickLightTheme}
       />
       <label htmlFor="neon-theme" aria-label="Toggle neon theme">
@@ -46,7 +47,7 @@ const ThemeSwitch = () => {
         type="radio"
         name="theme-switch"
         id="neon-theme"
-        checked={selectedTheme === 'neon'}
+        checked={theme === themes.neon}
         onChange={onClickNeonTheme}
       />
       <span></span>

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledIntructions = styled.div`
-  background: hsl(0, 5%, 81%);
+  background: ${(props) => props.customTheme.keypad};
   height: 80%;
   padding: 1rem;
   border-radius: 10px;

@@ -1,12 +1,16 @@
+import { useContext } from 'react';
+import { ThemeContext } from '../../context/theme';
 import { CalHeaderStyled, ThemePickerContainerStyled } from './styles/index';
 
 import ThemeSwitch from './ThemeSwitch';
 
 const CalHeader = () => {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <CalHeaderStyled>
+    <CalHeaderStyled customTheme={theme}>
       <h1>calc</h1>
-      <ThemePickerContainerStyled>
+      <ThemePickerContainerStyled customTheme={theme}>
         <span>Theme</span>
         <ThemeSwitch />
       </ThemePickerContainerStyled>

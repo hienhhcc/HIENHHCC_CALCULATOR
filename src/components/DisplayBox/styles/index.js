@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledDisplayBox = styled.div`
-  background: hsl(0, 0%, 93%);
+  background: ${(props) => props.customTheme.backgroundDisplay};
   height: 20%;
   text-align: right;
 
@@ -18,6 +18,8 @@ export const StyledDisplayBox = styled.div`
 `;
 
 export const StyledSpan = styled.span`
+  color: ${(props) => props.customTheme.textHeaderDisplay};
+
   &:not(:last-child) {
     margin-right: 0.2rem;
   }

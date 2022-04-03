@@ -16,6 +16,7 @@ export const ThemeSwitchStyled = styled.div`
     text-align: center;
     cursor: pointer;
     z-index: 5;
+    color: ${(props) => props.customTheme.textHeaderDisplay};
   }
 
   input:nth-of-type(1):checked ~ span::before {
@@ -42,7 +43,7 @@ export const ThemeSwitchStyled = styled.div`
     width: 100%;
     height: 26px;
     border-radius: 20px;
-    background-color: hsl(222, 26%, 31%);
+    background-color: ${(props) => props.customTheme.backgroundToggle};
 
     &::before {
       position: absolute;
@@ -53,7 +54,7 @@ export const ThemeSwitchStyled = styled.div`
       transform: translate(-50%, -50%);
       top: 50%;
       border-radius: 50%;
-      background: orange;
+      background: ${(props) => props.customTheme.keyToggle};
     }
   }
 `;

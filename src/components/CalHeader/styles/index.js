@@ -6,6 +6,7 @@ export const CalHeaderStyled = styled.header`
   align-items: center;
 
   h1 {
+    color: ${(props) => props.customTheme.textHeaderDisplay};
   }
 `;
 
@@ -13,6 +14,8 @@ export const ThemePickerContainerStyled = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
+  color: ${(props) => props.customTheme.textHeaderDisplay};
+  font-weight: bold;
 
   span {
     margin-right: 20px;

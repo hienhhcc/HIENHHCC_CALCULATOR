@@ -1,14 +1,23 @@
 import NumberInstruction from './NumberInstruction';
 import OperatorInstruction from './OperatorInstruction';
 
-const Instruction = ({ name, numberButton, dispatch, input }) => {
+const Instruction = ({ name, isNumberButton, type, dispatch, input }) => {
   //Number instructions
-  if (numberButton) {
-    return <NumberInstruction name={name} dispatch={dispatch} />;
+  if (isNumberButton) {
+    return (
+      <NumberInstruction name={name} operationType={type} dispatch={dispatch} />
+    );
   }
 
   //Operator instructions
-  return <OperatorInstruction name={name} dispatch={dispatch} input={input} />;
+  return (
+    <OperatorInstruction
+      name={name}
+      operationType={type}
+      dispatch={dispatch}
+      input={input}
+    />
+  );
 };
 
 export default Instruction;

@@ -1,7 +1,11 @@
+import { useContext } from 'react';
+import { ThemeContext } from '../../../../context/theme';
 import { DIVIDEBY0, MODULOBY0 } from '../../../../utils/constants';
 import { StyledIntruction } from '../styles';
 
-const OperatorInstruction = ({ name, dispatch, input }) => {
+const OperatorInstruction = ({ name, operationType, dispatch, input }) => {
+  const { theme } = useContext(ThemeContext);
+
   const onClickOperator = () => {
     if (['+', '-', '÷', '%', '\u00D7'].includes(name)) {
       dispatch({ type: 'operator', payload: name });
@@ -15,14 +19,23 @@ const OperatorInstruction = ({ name, dispatch, input }) => {
   };
 
   let content = (
-    <StyledIntruction onClick={onClickOperator}>
+    <StyledIntruction
+      operationType={operationType}
+      customTheme={theme}
+      onClick={onClickOperator}
+    >
       {name}
     </StyledIntruction>
   );
 
   if ((input[0] === DIVIDEBY0 || input[0] === MODULOBY0) && name !== 'AC') {
     content = (
-      <StyledIntruction onClick={onClickOperator} disabled>
+      <StyledIntruction
+        operationType={operationType}
+        customTheme={theme}
+        onClick={onClickOperator}
+        disabled
+      >
         {name}
       </StyledIntruction>
     );
