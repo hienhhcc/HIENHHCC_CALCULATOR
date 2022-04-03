@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import { CalHeader, DisplayBox, Instructions } from '../../components';
 import { DIVIDEBY0, MODULOBY0 } from '../../utils/constants';
 
@@ -135,6 +135,36 @@ const inputReducer = (state, action) => {
 
 const Calculator = () => {
   const [state, dispatch] = useReducer(inputReducer, initialState); //[8,*,9]
+
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+      const operator = ['+', '-', '*', '/', '.', 'Delete', '=', 'Enter'];
+      if (numbers.includes(e.key)) {
+        dispatch({ type: 'number', payload: e.key.toString() });
+      } else if (operator.includes(e.key)) {
+        if (e.key === '.') {
+          dispatch({ type: 'dot' });
+          return;
+        }
+        if (['+', '-', '/', '*'].includes(e.key)) {
+          let payload = e.key;
+          if (e.key === '/') payload = '÷';
+          else if (e.key === '*') payload = '\u00D7';
+          dispatch({ type: 'operator', payload: payload });
+        } else if (e.key === '=' || e.key === 'Enter') {
+          dispatch({ type: 'equal' });
+        } else if (e.key === 'Del') {
+          dispatch({ type: 'delete' });
+        }
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown');
+    };
+  }, []);
 
   return (
     <StyledCalculator>
