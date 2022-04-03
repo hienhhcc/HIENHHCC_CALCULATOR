@@ -33,8 +33,6 @@ const calculateHelper = (number1, operator, number2) => {
 const inputReducer = (state, action) => {
   let newState = { ...state, input: [...state.input] };
   let { input } = newState;
-  // console.log('payload', action.payload);
-  console.log(input);
   switch (action.type) {
     case 'delete':
       if (input[0] === DIVIDEBY0 || input[0] === MODULOBY0) {
@@ -162,7 +160,7 @@ const Calculator = () => {
     document.addEventListener('keydown', onKeyDown);
 
     return () => {
-      document.removeEventListener('keydown');
+      document.removeEventListener('keydown', onKeyDown);
     };
   }, []);
 
