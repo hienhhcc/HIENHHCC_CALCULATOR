@@ -11,10 +11,12 @@ const OperatorInstruction = ({ name, operationType, dispatch, input }) => {
       dispatch({ type: 'operator', payload: name });
     } else if (name === '=') {
       dispatch({ type: 'equal' });
-    } else if (name === 'AC') {
+    } else if (name === 'Reset') {
       dispatch({ type: 'clear' });
     } else if (name === '+/-') {
       dispatch({ type: 'negate' });
+    } else if (name === 'Del') {
+      dispatch({ type: 'delete' });
     }
   };
 
@@ -28,7 +30,11 @@ const OperatorInstruction = ({ name, operationType, dispatch, input }) => {
     </StyledIntruction>
   );
 
-  if ((input[0] === DIVIDEBY0 || input[0] === MODULOBY0) && name !== 'AC') {
+  if (
+    (input[0] === DIVIDEBY0 || input[0] === MODULOBY0) &&
+    name !== 'Reset' &&
+    name !== 'Del'
+  ) {
     content = (
       <StyledIntruction
         operationType={operationType}

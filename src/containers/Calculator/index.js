@@ -33,19 +33,37 @@ const calculateHelper = (number1, operator, number2) => {
 const inputReducer = (state, action) => {
   let newState = { ...state, input: [...state.input] };
   let { input } = newState;
+  // console.log('payload', action.payload);
+  console.log(input);
   switch (action.type) {
-    case 'number':
+    case 'delete':
+      if (input[0] === DIVIDEBY0 || input[0] === MODULOBY0) {
+        return initialState;
+      }
+
+      if (input.length === 1 && input[0].length === 1) {
+        input[0] = '0';
+        return newState;
+      }
+
       if (input.length === 1) {
-        if (
-          input[0] !== DIVIDEBY0 &&
-          input[0] !== MODULOBY0 &&
-          newState.result === ''
-        ) {
-          input[0] = (+input[0].concat(action.payload)).toString();
-        } else {
-          input[0] = action.payload;
-          newState.result = '';
-        }
+        input[0] = input[0].slice(0, input[0].length - 1);
+      } else if (input.length === 3) {
+        if (input[2].length === 1) input[2] = '0';
+        else input[2] = input[2].slice(0, input[2].length - 1);
+      }
+      return newState;
+    case 'number':
+      if (
+        (input[0] === DIVIDEBY0 || input[0] === MODULOBY0) &&
+        newState.result !== ''
+      ) {
+        input[0] = action.payload;
+        newState.result = '';
+        return newState;
+      }
+      if (input.length === 1) {
+        input[0] = (+input[0].concat(action.payload)).toString();
       } else if (input.length === 2) {
         input[2] = action.payload;
       } else {

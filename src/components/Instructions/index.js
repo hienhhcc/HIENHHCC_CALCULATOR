@@ -24,7 +24,7 @@ const Instructions = ({ input, dispatch }) => {
       isNumberButton: true,
     },
     {
-      name: 'DEL',
+      name: 'Del',
       type: 'function',
     },
     {
@@ -78,7 +78,7 @@ const Instructions = ({ input, dispatch }) => {
       isNumberButton: true,
     },
     {
-      name: '/',
+      name: '÷',
       type: 'normal',
     },
     {

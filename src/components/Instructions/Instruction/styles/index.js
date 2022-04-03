@@ -5,6 +5,7 @@ export const StyledIntruction = styled.button`
   font-size: ${(props) =>
     props.operationType === 'normal' ? '1.8rem' : '1.4rem'};
   font-weight: 900;
+  text-transform: uppercase;
   cursor: pointer;
   background-color: ${(props) =>
     props.operationType === 'normal'
@@ -31,5 +32,10 @@ export const StyledIntruction = styled.button`
 
   &:active {
     background-color: #c5c5c5;
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 `;
